@@ -21,6 +21,7 @@ const navItems = [
 const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
   const router = useRouter()
   const pathname = usePathname()
+  const currentPath = pathname ?? ''
 
   const handleNavigation = (path: string) => {
     router.push(path)
@@ -57,7 +58,7 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
 
         <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
           {navItems.map(({ label, path, icon: Icon, matchPrefix }) => {
-            const active = matchPrefix ? pathname.startsWith(path) : pathname === path
+            const active = matchPrefix ? currentPath.startsWith(path) : currentPath === path
             return (
               <button
                 key={path}
