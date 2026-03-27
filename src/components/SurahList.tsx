@@ -7,6 +7,7 @@ import { fetchSurahs, searchAyahs, AyahSearchMatch } from '../utils/api';
 const SurahList = () => {
   const [surahs, setSurahs] = useState<any[]>([]);
   const [loadingSurahs, setLoadingSurahs] = useState(true);
+  const [loadError, setLoadError] = useState<string | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
   const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
   const [revelationFilter, setRevelationFilter] = useState<'All' | 'Meccan' | 'Madani'>('All');
@@ -26,11 +27,20 @@ const SurahList = () => {
   useEffect(() => {
     const loadSurahs = async () => {
       setLoadingSurahs(true);
+      setLoadError(null);
       try {
         const data = await fetchSurahs();
-        setSurahs(data);
+        console.log('Surahs loaded:', data?.length || 0, 'surahs');
+        if (!data || data.length === 0) {
+          setLoadError('No surahs found. API may be down.');
+          setSurahs([]);
+        } else {
+          setSurahs(data);
+        }
       } catch (error) {
         console.error('Failed to load surahs:', error);
+        setLoadError(`Failed to load surahs: ${error instanceof Error ? error.message : 'Unknown error'}`);
+        setSurahs([]);
       } finally {
         setLoadingSurahs(false);
       }
@@ -175,6 +185,16 @@ const SurahList = () => {
             <div className="mb-3 inline-block h-8 w-8 animate-spin rounded-full border-4 border-emerald-900/20 border-t-pal-gold dark:border-pal-sage/30 dark:border-t-pal-gold"></div>
             <p className="text-sm text-emerald-900/70 dark:text-white/75">Loading all surahs...</p>
           </div>
+        </div>
+      ) : loadError ? (
+        <div className="text-center py-12">
+          <p className="text-sm text-red-600 dark:text-red-400">{loadError}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 pal-btn-primary px-4 py-2 text-sm"
+          >
+            Retry
+          </button>
         </div>
       ) : filteredSurahs.length === 0 ? (
         <div className="text-center py-12">

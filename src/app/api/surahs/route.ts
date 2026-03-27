@@ -1,11 +1,11 @@
 import { NextResponse } from 'next/server';
 
-export const dynamic = 'force-static';
+export const revalidate = 3600; // Revalidate every hour
 
 export async function GET() {
   try {
     const response = await fetch('https://api.alquran.cloud/v1/surah', {
-      next: { revalidate: 86400 },
+      next: { revalidate: 3600 },
     });
 
     if (!response.ok) {
@@ -27,6 +27,10 @@ export async function GET() {
     return NextResponse.json(data);
   } catch (error) {
     console.error('[/api/surahs]', error);
-    return NextResponse.json([]);
+    // Return 500 error instead of empty array so clients know there was a problem
+    return NextResponse.json(
+      { error: 'Failed to fetch surahs' },
+      { status: 500 }
+    );
   }
 }

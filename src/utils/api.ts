@@ -8,6 +8,13 @@ const APP_BASE = process.env.NEXT_PUBLIC_APP_URL ?? '';
 // Fetch all Surahs — AlQuran Cloud (proxied by internal route)
 export const fetchSurahs = async () => {
   const response = await axios.get(`${APP_BASE}/api/surahs`);
+  // Handle both error responses and successful responses
+  if (response.status >= 400) {
+    throw new Error(`API error: ${response.status}`);
+  }
+  if (!response.data || (Array.isArray(response.data) && response.data.length === 0)) {
+    throw new Error('No surahs data received from API');
+  }
   return response.data;
 };
 
