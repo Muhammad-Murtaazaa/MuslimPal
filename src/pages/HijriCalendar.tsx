@@ -122,46 +122,46 @@ export default function HijriCalendarView() {
 
   return (
     <div className="space-y-6">
-      <header className="rounded-3xl border border-emerald-900/15 bg-white/75 p-5 shadow-sm backdrop-blur-md">
-        <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs uppercase tracking-[0.12em] text-emerald-900/70">
+      <header className="rounded-3xl border border-emerald-900/15 bg-white/75 p-5 shadow-sm backdrop-blur-md dark:border-pal-sage/25 dark:bg-pal-surface/85">
+        <p className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs uppercase tracking-[0.12em] text-emerald-900/70 dark:bg-pal-bg/50 dark:text-pal-gold">
           <CalendarDays size={14} /> Islamic Date
         </p>
-        <h1 className="mt-3 font-serif text-3xl text-emerald-950">Hijri Calendar</h1>
-        <p className="mt-1 text-sm text-emerald-900/75">
+        <h1 className="mt-3 font-serif text-3xl text-emerald-950 dark:text-pal-gold">Hijri Calendar</h1>
+        <p className="mt-1 text-sm text-emerald-900/75 dark:text-white/90">
           Live Hijri date and monthly Islamic calendar powered by Aladhan API.
         </p>
 
-        <div className="mt-4 rounded-2xl border border-emerald-900/15 bg-emerald-50/60 p-4">
-          <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/60">Current Islamic Date</p>
+        <div className="mt-4 rounded-2xl border border-emerald-900/15 bg-emerald-50/60 p-4 dark:border-pal-sage/25 dark:bg-pal-bg/50">
+          <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/60 dark:text-white/75">Current Islamic Date</p>
           {currentHijri ? (
             <>
-              <p className="mt-1 text-2xl font-bold text-emerald-950">
+              <p className="mt-1 text-2xl font-bold text-emerald-950 dark:text-pal-gold">
                 {currentHijri.day} {currentHijri.month} {currentHijri.year} AH
               </p>
-              <p className="text-sm text-emerald-900/75">
+              <p className="text-sm text-emerald-900/75 dark:text-white/85">
                 {currentHijri.monthArabic} | {currentHijri.weekday} | Gregorian {currentHijri.gregorianDate}
               </p>
             </>
           ) : (
-            <p className="mt-1 text-sm text-emerald-900/75">Current Hijri date unavailable.</p>
+            <p className="mt-1 text-sm text-emerald-900/75 dark:text-white/85">Current Hijri date unavailable.</p>
           )}
         </div>
       </header>
 
-      <section className="rounded-3xl border border-emerald-900/15 bg-white/75 p-5 shadow-sm backdrop-blur-md">
+      <section className="rounded-3xl border border-emerald-900/15 bg-white/75 p-5 shadow-sm backdrop-blur-md dark:border-pal-sage/25 dark:bg-pal-surface/85">
         <div className="mb-4 flex items-center justify-between gap-3">
           <button
             type="button"
             onClick={goPrevMonth}
-            className="inline-flex items-center gap-1 rounded-xl border border-emerald-900/20 px-3 py-2 text-sm text-emerald-900 hover:bg-emerald-50"
+            className="pal-btn-ghost inline-flex items-center gap-1 px-3 py-2 text-sm text-emerald-900 hover:bg-emerald-50 dark:text-pal-gold"
           >
             <ChevronLeft size={16} /> Prev
           </button>
-          <h2 className="font-semibold text-emerald-950">{monthLabel}</h2>
+          <h2 className="font-semibold text-emerald-950 dark:text-pal-gold">{monthLabel}</h2>
           <button
             type="button"
             onClick={goNextMonth}
-            className="inline-flex items-center gap-1 rounded-xl border border-emerald-900/20 px-3 py-2 text-sm text-emerald-900 hover:bg-emerald-50"
+            className="pal-btn-ghost inline-flex items-center gap-1 px-3 py-2 text-sm text-emerald-900 hover:bg-emerald-50 dark:text-pal-gold"
           >
             Next <ChevronRight size={16} />
           </button>
@@ -169,7 +169,7 @@ export default function HijriCalendarView() {
 
         <div className="grid grid-cols-7 gap-2">
           {WEEKDAYS.map((day) => (
-            <div key={day} className="rounded-lg bg-emerald-100/70 px-2 py-2 text-center text-xs font-semibold uppercase text-emerald-800">
+            <div key={day} className="rounded-lg bg-emerald-100/70 px-2 py-2 text-center text-xs font-semibold uppercase text-emerald-800 dark:bg-pal-bg/55 dark:text-pal-gold">
               {day}
             </div>
           ))}
@@ -180,10 +180,10 @@ export default function HijriCalendarView() {
             }
 
             return (
-              <div key={item.gregorian.date} className="min-h-[84px] rounded-lg border border-emerald-900/15 bg-white p-2">
-                <p className="text-xs font-semibold text-emerald-900">{item.gregorian.day}</p>
-                <p className="mt-1 text-sm font-bold text-emerald-950">{item.hijri.day}</p>
-                <p className="text-[10px] text-emerald-900/70">{item.hijri.month}</p>
+              <div key={item.gregorian.date} className="min-h-[84px] rounded-lg border border-emerald-900/15 bg-white p-2 dark:border-pal-sage/25 dark:bg-pal-bg/45">
+                <p className="text-xs font-semibold text-emerald-900 dark:text-white/80">{item.gregorian.day}</p>
+                <p className="mt-1 text-sm font-bold text-emerald-950 dark:text-pal-gold">{item.hijri.day}</p>
+                <p className="text-[10px] text-emerald-900/70 dark:text-white/75">{item.hijri.month}</p>
                 {item.hijri.holidays?.length ? (
                   <p className="mt-1 line-clamp-1 text-[10px] text-amber-700">{item.hijri.holidays[0]}</p>
                 ) : null}
@@ -192,7 +192,7 @@ export default function HijriCalendarView() {
           })}
         </div>
 
-        {loading ? <p className="mt-4 text-sm text-emerald-900/70">Loading Hijri calendar...</p> : null}
+        {loading ? <p className="mt-4 text-sm text-emerald-900/70 dark:text-white/80">Loading Hijri calendar...</p> : null}
         {error ? <p className="mt-4 text-sm text-amber-700">{error}</p> : null}
       </section>
     </div>

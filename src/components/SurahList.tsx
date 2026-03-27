@@ -60,36 +60,36 @@ const SurahList = () => {
   return (
     <div className="p-4">
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
-        <h1 className="text-2xl font-bold dark:text-gray-100">Quran Reader</h1>
+        <h1 className="text-2xl font-bold text-emerald-950 dark:text-pal-gold">Quran Reader</h1>
         <div className="flex gap-2">
           <Link
             href={`/read/${continuePage >= 1 && continuePage <= 604 ? continuePage : 1}`}
-            className="rounded-xl bg-[#064E3B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0F766E]"
+            className="pal-btn-primary px-4 py-2 text-sm"
           >
             Continue by Page
           </Link>
           <Link
             href="/read/1"
-            className="rounded-xl border border-emerald-900/20 bg-white px-4 py-2 text-sm font-semibold text-emerald-900 transition hover:bg-emerald-50"
+            className="pal-btn-ghost border-emerald-900/20 bg-white px-4 py-2 text-sm text-emerald-900 hover:bg-emerald-50 dark:bg-transparent dark:text-pal-gold"
           >
             Start Page 1
           </Link>
         </div>
       </div>
 
-      <div className="mb-6 rounded-2xl border border-emerald-900/15 bg-white/70 p-4 backdrop-blur-md">
-        <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-emerald-900/70">Search Ayat</h2>
+      <div className="mb-6 rounded-2xl border border-emerald-900/15 bg-white/70 p-4 backdrop-blur-md dark:border-pal-sage/25 dark:bg-pal-surface/85">
+        <h2 className="text-sm font-semibold uppercase tracking-[0.12em] text-emerald-900/70 dark:text-pal-gold">Search Ayat</h2>
         <form onSubmit={handleAyahSearch} className="mt-3 flex flex-col gap-2 sm:flex-row">
           <input
             type="text"
             placeholder="Search ayah text or reference (example: Allah or 2:255)"
-            className="w-full rounded-xl border border-gray-200 bg-white p-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0F766E]"
+            className="w-full rounded-xl border border-gray-200 bg-white p-3 text-gray-900 placeholder-gray-400 shadow-sm focus:outline-none focus:ring-2 focus:ring-[#0F766E] dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white dark:placeholder:text-white/50 dark:focus:ring-pal-gold/60"
             value={ayahSearch}
             onChange={(e) => setAyahSearch(e.target.value)}
           />
           <button
             type="submit"
-            className="rounded-xl bg-[#064E3B] px-4 py-2 text-sm font-semibold text-white transition hover:bg-[#0F766E]"
+            className="pal-btn-primary px-4 py-2 text-sm"
           >
             {isSearchingAyah ? 'Searching...' : 'Search'}
           </button>
@@ -103,27 +103,27 @@ const SurahList = () => {
               <Link
                 key={`${match.surahNumber}:${match.ayahNumber}:${idx}`}
                 href={`/surah/${match.surahNumber}`}
-                className="block rounded-xl border border-emerald-900/10 bg-emerald-50/50 p-3 transition hover:bg-emerald-100/50"
+                className="block rounded-xl border border-emerald-900/10 bg-emerald-50/50 p-3 transition hover:bg-emerald-100/50 dark:border-pal-sage/25 dark:bg-pal-bg/45 dark:hover:bg-pal-bg/60"
               >
-                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-emerald-800">
+                <p className="text-xs font-semibold uppercase tracking-[0.1em] text-emerald-800 dark:text-pal-gold">
                   Surah {match.surahName} - Ayah {match.ayahNumber}
                 </p>
-                <p className="mt-1 text-sm text-emerald-950/85 line-clamp-2">{match.text}</p>
+                <p className="mt-1 line-clamp-2 text-sm text-emerald-950/85 dark:text-white/90">{match.text}</p>
               </Link>
             ))}
           </div>
         )}
       </div>
 
-      <h2 className="mb-2 text-lg font-semibold text-emerald-950">All Surah Cards</h2>
+      <h2 className="mb-2 text-lg font-semibold text-emerald-950 dark:text-pal-gold">All Surah Cards</h2>
       <div className="mb-6 flex flex-col gap-3">
         <input
           type="text"
           placeholder="Search surahs..."
-          className="w-full p-3 rounded-xl border border-gray-200 dark:border-gray-600
-            bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100
-            placeholder-gray-400 dark:placeholder-gray-500
-            focus:outline-none focus:ring-2 focus:ring-gold-500 dark:focus:ring-gold-400
+          className="w-full rounded-xl border border-gray-200 bg-white p-3
+            text-gray-900 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white
+            placeholder-gray-400 dark:placeholder:text-white/50
+            focus:outline-none focus:ring-2 focus:ring-gold-500 dark:focus:ring-pal-gold/60
             shadow-sm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
@@ -136,11 +136,11 @@ const SurahList = () => {
               className={`px-3 py-1 rounded-full text-sm font-medium transition-colors ${
                 revelationFilter === type
                   ? type === 'Meccan'
-                    ? 'bg-amber-500 dark:bg-amber-600 text-white'
+                    ? 'bg-amber-500 text-white dark:bg-amber-500'
                     : type === 'Madani'
-                    ? 'bg-teal-500 dark:bg-teal-600 text-white'
-                    : 'bg-gold-500 text-gray-900'
-                  : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    ? 'bg-teal-500 text-white dark:bg-teal-500'
+                    : 'bg-gold-500 text-gray-900 dark:bg-pal-gold dark:text-pal-bg'
+                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200 dark:bg-pal-bg/50 dark:text-white/85 dark:hover:bg-pal-bg/70'
               }`}
             >
               {type}
@@ -152,17 +152,17 @@ const SurahList = () => {
         {filteredSurahs.map((surah) => (
           <Link key={surah.number} href={`/surah/${surah.number}`}>
             <div className="
-              bg-white dark:bg-gray-800
+              bg-white dark:bg-pal-surface/90
               rounded-xl shadow-md hover:shadow-lg
               transition-all duration-200 hover:-translate-y-0.5
               p-4 flex flex-col gap-2
-              border border-gray-100 dark:border-gray-700
+              border border-gray-100 dark:border-pal-sage/25
               cursor-pointer h-full
             ">
               {/* Top row: number badge + revelation type */}
               <div className="flex items-center justify-between">
                 <span className="inline-flex items-center justify-center w-8 h-8 rounded-full
-                  bg-gold-100 dark:bg-gold-900 text-gold-700 dark:text-gold-300
+                  bg-gold-100 dark:bg-pal-gold/25 text-gold-700 dark:text-pal-gold
                   text-sm font-bold">
                   {surah.number}
                 </span>
@@ -183,16 +183,16 @@ const SurahList = () => {
               </p>
 
               {/* English name + translation */}
-              <p className="text-base font-semibold text-gray-800 dark:text-gray-100">
+              <p className="text-base font-semibold text-gray-800 dark:text-pal-gold">
                 {surah.surahName}
               </p>
-              <p className="text-sm text-gray-500 dark:text-gray-400 italic">
+              <p className="text-sm italic text-gray-500 dark:text-white/85">
                 {surah.surahNameTranslation}
               </p>
 
               {/* Verse count */}
               {surah.numberOfAyahs && (
-                <p className="text-xs text-gray-400 dark:text-gray-500 mt-auto">
+                <p className="mt-auto text-xs text-gray-400 dark:text-white/65">
                   {surah.numberOfAyahs} verses
                 </p>
               )}

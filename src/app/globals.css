@@ -3,6 +3,14 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
+  --color-pal-bg: #022C22;
+  --color-pal-surface: #054E3B;
+  --color-pal-gold: #D4AF37;
+  --color-pal-sage: #86A68F;
+  --color-pal-mint: #E2F2E9;
+  --color-pal-body: #A9C3B3;
+  --color-pal-shadow: #011A14;
+
   --color-gold-50: #F5E8BC;
   --color-gold-100: #E9CC75;
   --color-gold-200: #D4AF37;
@@ -18,21 +26,89 @@
   html {
     background-color: #FCFCF9;
     color: #052E16;
-    font-family: 'Inter', sans-serif;
+    font-family: 'Manrope', sans-serif;
   }
 
   h1, h2, h3, .font-serif {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Cormorant Garamond', serif;
   }
 
   html.dark {
-    background-color: #111827;
-    color: #F9FAFB;
+    background-color: #022C22;
+    color: #A9C3B3;
   }
 
   body {
     background: radial-gradient(circle at top right, rgba(15, 118, 110, 0.08), transparent 38%),
       radial-gradient(circle at top left, rgba(212, 175, 55, 0.14), transparent 30%),
       #FCFCF9;
+    min-height: 100vh;
+  }
+
+  html.dark body {
+    background:
+      radial-gradient(circle at 12% 10%, rgba(212, 175, 55, 0.12), transparent 32%),
+      radial-gradient(circle at 86% 5%, rgba(134, 166, 143, 0.14), transparent 38%),
+      radial-gradient(circle at 78% 80%, rgba(5, 78, 59, 0.42), transparent 46%),
+      #022C22;
+  }
+
+  html.dark h1,
+  html.dark h2,
+  html.dark h3,
+  html.dark h4,
+  html.dark h5,
+  html.dark h6 {
+    color: #D4AF37;
+  }
+}
+
+@layer components {
+  .pal-card {
+    @apply rounded-2xl border backdrop-blur-md;
+    background-color: rgba(252, 252, 249, 0.7);
+    border-color: rgba(6, 78, 59, 0.12);
+    box-shadow: 0 10px 30px rgba(1, 26, 20, 0.1);
+  }
+
+  html.dark .pal-card {
+    background-color: #054E3B;
+    border-color: rgba(134, 166, 143, 0.2);
+    box-shadow: 0 16px 36px rgba(1, 26, 20, 0.55);
+  }
+
+  .pal-btn-primary {
+    @apply rounded-xl border px-4 py-2 font-semibold transition-all duration-200;
+    background-color: #064E3B;
+    border-color: #064E3B;
+    color: #FFFFFF;
+  }
+
+  .pal-btn-primary:hover {
+    background-color: #0F766E;
+  }
+
+  html.dark .pal-btn-primary {
+    background-color: #D4AF37;
+    border-color: #D4AF37;
+    color: #022C22;
+  }
+
+  html.dark .pal-btn-primary:hover {
+    filter: brightness(0.94);
+  }
+
+  .pal-btn-ghost {
+    @apply rounded-xl border px-4 py-2 font-semibold transition-colors duration-200;
+    background-color: transparent;
+  }
+
+  html.dark .pal-btn-ghost {
+    color: #D4AF37;
+    border-color: #D4AF37;
+  }
+
+  html.dark .pal-btn-ghost:hover {
+    background-color: rgba(212, 175, 55, 0.09);
   }
 }

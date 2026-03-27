@@ -38,18 +38,18 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
       )}
 
       <div
-        className={`fixed top-0 left-0 h-full w-72 bg-[#FCFCF9]/95 dark:bg-gray-900 shadow-2xl z-50 transform transition-transform duration-300 ease-in-out flex flex-col border-r border-emerald-900/10 ${
+        className={`fixed top-0 left-0 z-50 flex h-full w-72 transform flex-col border-r border-emerald-900/10 bg-[#FCFCF9]/95 shadow-2xl transition-transform duration-300 ease-in-out dark:border-pal-sage/20 dark:bg-pal-bg/98 dark:shadow-[0_20px_45px_rgba(1,26,20,0.62)] ${
           isOpen ? 'translate-x-0' : '-translate-x-full'
         }`}
       >
-        <div className="p-5 flex justify-between items-center border-b border-emerald-900/10 dark:border-gray-800">
+        <div className="flex items-center justify-between border-b border-emerald-900/10 p-5 dark:border-pal-sage/20">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-[#0F766E] mb-0.5">Navigation</p>
-            <h2 className="text-lg font-bold text-emerald-950 dark:text-gray-100">MuslimPal</h2>
+            <p className="mb-0.5 text-xs font-semibold uppercase tracking-widest text-[#0F766E] dark:text-pal-gold">Navigation</p>
+            <h2 className="text-lg font-bold text-emerald-950 dark:text-pal-mint">MuslimPal</h2>
           </div>
           <button
             onClick={toggleSidebar}
-            className="p-2 text-emerald-700/70 hover:text-emerald-900 hover:bg-emerald-50 dark:hover:bg-gray-800 rounded-lg transition-colors"
+            className="rounded-lg p-2 text-emerald-700/70 transition-colors hover:bg-emerald-50 hover:text-emerald-900 dark:text-pal-sage dark:hover:bg-pal-surface dark:hover:text-pal-gold"
             aria-label="Close sidebar"
           >
             <X size={20} />
@@ -65,22 +65,22 @@ const Sidebar = ({ isOpen, toggleSidebar }: SidebarProps) => {
                 onClick={() => handleNavigation(path)}
                 className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl text-sm font-medium transition-all duration-150 ${
                   active
-                    ? 'bg-emerald-100 text-emerald-900'
-                    : 'text-emerald-900/75 hover:bg-emerald-50 hover:text-emerald-950 dark:hover:bg-gray-800 dark:text-gray-300'
+                    ? 'bg-emerald-100 text-emerald-900 dark:bg-pal-surface dark:text-pal-mint dark:ring-1 dark:ring-pal-sage/25'
+                    : 'text-emerald-900/75 hover:bg-emerald-50 hover:text-emerald-950 dark:text-pal-body dark:hover:bg-pal-surface/80 dark:hover:text-pal-mint'
                 }`}
               >
-                <Icon size={18} className={active ? 'text-[#0F766E]' : ''} />
+                <Icon size={18} className={active ? 'text-[#0F766E] dark:text-pal-gold' : ''} />
                 {label}
                 {active && (
-                  <span className="ml-auto w-1.5 h-1.5 rounded-full bg-[#D4AF37]" />
+                  <span className="ml-auto h-2.5 w-2.5 rounded-full bg-[#D4AF37] shadow-[0_0_0_4px_rgba(212,175,55,0.18)]" />
                 )}
               </button>
             )
           })}
         </nav>
 
-        <div className="p-4 border-t border-emerald-900/10 dark:border-gray-800">
-          <p className="text-xs text-center text-emerald-900/60 dark:text-gray-500">
+        <div className="border-t border-emerald-900/10 p-4 dark:border-pal-sage/20">
+          <p className="text-center text-xs text-emerald-900/60 dark:text-pal-sage">
             Built for prayer, learning, and mindful living.
           </p>
         </div>

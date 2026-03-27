@@ -95,17 +95,17 @@ export default function ZakatView() {
     <div className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
       <section className="space-y-6">
         <header>
-          <h1 className="font-serif text-3xl text-emerald-950">Purify Your Wealth</h1>
-          <p className="mt-1 text-sm text-emerald-900/75">Calculate zakat across assets and liabilities in three guided steps.</p>
+          <h1 className="font-serif text-3xl text-emerald-950 dark:text-pal-gold">Purify Your Wealth</h1>
+          <p className="mt-1 text-sm text-emerald-900/75 dark:text-white/90">Calculate zakat across assets and liabilities in three guided steps.</p>
         </header>
 
-        <div className="grid gap-3 rounded-2xl border border-emerald-900/15 bg-white/70 p-4 md:grid-cols-3">
+        <div className="grid gap-3 rounded-2xl border border-emerald-900/15 bg-white/70 p-4 dark:border-pal-sage/25 dark:bg-pal-surface/85 md:grid-cols-3">
           <div>
-            <label className="mb-2 block text-xs text-emerald-900/70">Currency</label>
+            <label className="mb-2 block text-xs text-emerald-900/70 dark:text-white/80">Currency</label>
             <select
               value={currency}
               onChange={(event) => setCurrency(event.target.value as CurrencyCode)}
-              className="w-full rounded-xl border border-emerald-900/20 px-3 py-2 text-sm"
+              className="w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-sm text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
             >
               {CURRENCIES.map((code) => (
                 <option key={code} value={code}>
@@ -115,31 +115,31 @@ export default function ZakatView() {
             </select>
           </div>
           <div>
-            <label className="mb-2 block text-xs text-emerald-900/70">Gold Price / g ({currency})</label>
+            <label className="mb-2 block text-xs text-emerald-900/70 dark:text-white/80">Gold Price / g ({currency})</label>
             <input
               type="number"
               value={goldPricePerGram}
               onChange={(event) => setGoldPricePerGram(Number(event.target.value || 0))}
-              className="w-full rounded-xl border border-emerald-900/20 px-3 py-2 text-sm"
+              className="w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-sm text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
             />
           </div>
           <div>
-            <label className="mb-2 block text-xs text-emerald-900/70">Silver Price / g ({currency})</label>
+            <label className="mb-2 block text-xs text-emerald-900/70 dark:text-white/80">Silver Price / g ({currency})</label>
             <input
               type="number"
               value={silverPricePerGram}
               onChange={(event) => setSilverPricePerGram(Number(event.target.value || 0))}
-              className="w-full rounded-xl border border-emerald-900/20 px-3 py-2 text-sm"
+              className="w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-sm text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
             />
           </div>
-          <p className="md:col-span-3 text-xs text-emerald-900/65">
+          <p className="md:col-span-3 text-xs text-emerald-900/65 dark:text-white/75">
             {ratesLoading
               ? 'Updating FX rates...'
               : `FX base USD->${currency}: ${fxRate.toFixed(4)}. Edit metal prices for exact local market accuracy.`}
           </p>
         </div>
 
-        <div className="grid grid-cols-3 gap-2 rounded-2xl border border-emerald-900/15 bg-white/70 p-3">
+        <div className="grid grid-cols-3 gap-2 rounded-2xl border border-emerald-900/15 bg-white/70 p-3 dark:border-pal-sage/25 dark:bg-pal-surface/85">
           {steps.map((item, index) => {
             const current = index + 1
             const done = current < step
@@ -149,7 +149,9 @@ export default function ZakatView() {
                 key={item}
                 onClick={() => setStep(current)}
                 className={`rounded-xl px-3 py-2 text-sm transition ${
-                  active ? 'bg-[#064E3B] text-white' : 'bg-emerald-50 text-emerald-900'
+                  active
+                    ? 'bg-[#064E3B] text-white dark:bg-pal-gold dark:text-pal-bg'
+                    : 'bg-emerald-50 text-emerald-900 dark:bg-pal-bg/50 dark:text-white/90'
                 }`}
               >
                 <span className="inline-flex items-center gap-2">
@@ -164,57 +166,57 @@ export default function ZakatView() {
         <div className="space-y-4">
           {(step === 1 || step === 3) && (
             <div className="grid gap-4 md:grid-cols-2">
-              <div className="rounded-2xl border border-emerald-900/15 bg-white/70 p-4">
-                <h3 className="mb-2 flex items-center gap-2 font-semibold text-emerald-950">
+              <div className="rounded-2xl border border-emerald-900/15 bg-white/70 p-4 dark:border-pal-sage/25 dark:bg-pal-surface/85">
+                <h3 className="mb-2 flex items-center gap-2 font-semibold text-emerald-950 dark:text-pal-gold">
                   <Coins size={16} /> Liquid Assets
                 </h3>
-                <label className="mb-3 block text-xs text-emerald-900/70">Cash ({currency})</label>
+                <label className="mb-3 block text-xs text-emerald-900/70 dark:text-white/80">Cash ({currency})</label>
                 <input
                   type="number"
                   value={cash}
                   onChange={(event) => setCash(Number(event.target.value || 0))}
-                  className="mb-3 w-full rounded-xl border border-emerald-900/20 px-3 py-2"
+                  className="mb-3 w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
                 />
-                <label className="mb-3 block text-xs text-emerald-900/70">Business ({currency})</label>
+                <label className="mb-3 block text-xs text-emerald-900/70 dark:text-white/80">Business ({currency})</label>
                 <input
                   type="number"
                   value={business}
                   onChange={(event) => setBusiness(Number(event.target.value || 0))}
-                  className="w-full rounded-xl border border-emerald-900/20 px-3 py-2"
+                  className="w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
                 />
               </div>
 
-              <div className="rounded-2xl border border-emerald-900/15 bg-white/70 p-4">
-                <h3 className="mb-2 flex items-center gap-2 font-semibold text-emerald-950">
+              <div className="rounded-2xl border border-emerald-900/15 bg-white/70 p-4 dark:border-pal-sage/25 dark:bg-pal-surface/85">
+                <h3 className="mb-2 flex items-center gap-2 font-semibold text-emerald-950 dark:text-pal-gold">
                   <Scale size={16} /> Gold & Silver
                 </h3>
-                <label className="mb-3 block text-xs text-emerald-900/70">Gold (grams)</label>
+                <label className="mb-3 block text-xs text-emerald-900/70 dark:text-white/80">Gold (grams)</label>
                 <input
                   type="number"
                   value={goldGrams}
                   onChange={(event) => setGoldGrams(Number(event.target.value || 0))}
-                  className="mb-3 w-full rounded-xl border border-emerald-900/20 px-3 py-2"
+                  className="mb-3 w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
                 />
-                <label className="mb-3 block text-xs text-emerald-900/70">Silver (grams)</label>
+                <label className="mb-3 block text-xs text-emerald-900/70 dark:text-white/80">Silver (grams)</label>
                 <input
                   type="number"
                   value={silverGrams}
                   onChange={(event) => setSilverGrams(Number(event.target.value || 0))}
-                  className="w-full rounded-xl border border-emerald-900/20 px-3 py-2"
+                  className="w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
                 />
               </div>
             </div>
           )}
 
           {(step === 2 || step === 3) && (
-            <div className="rounded-2xl border border-emerald-900/15 bg-white/70 p-4">
-              <h3 className="mb-2 font-semibold text-emerald-950">Liabilities</h3>
-              <label className="mb-3 block text-xs text-emerald-900/70">Short-term debt ({currency})</label>
+            <div className="rounded-2xl border border-emerald-900/15 bg-white/70 p-4 dark:border-pal-sage/25 dark:bg-pal-surface/85">
+              <h3 className="mb-2 font-semibold text-emerald-950 dark:text-pal-gold">Liabilities</h3>
+              <label className="mb-3 block text-xs text-emerald-900/70 dark:text-white/80">Short-term debt ({currency})</label>
               <input
                 type="number"
                 value={liabilities}
                 onChange={(event) => setLiabilities(Number(event.target.value || 0))}
-                className="w-full rounded-xl border border-emerald-900/20 px-3 py-2"
+                className="w-full rounded-xl border border-emerald-900/20 bg-white px-3 py-2 text-emerald-950 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white"
               />
             </div>
           )}
@@ -222,16 +224,16 @@ export default function ZakatView() {
       </section>
 
       <aside className="lg:sticky lg:top-24 lg:self-start">
-        <div className="rounded-2xl border border-emerald-900/20 bg-white/75 p-5 backdrop-blur-md shadow-sm">
-          <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/70">Estimated Zakat</p>
-          <p className="mt-2 text-4xl font-bold text-emerald-950">{formatMoney(zakat, currency)}</p>
+        <div className="rounded-2xl border border-emerald-900/20 bg-white/75 p-5 shadow-sm backdrop-blur-md dark:border-pal-sage/25 dark:bg-pal-surface/85">
+          <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/70 dark:text-white/75">Estimated Zakat</p>
+          <p className="mt-2 text-4xl font-bold text-emerald-950 dark:text-pal-gold">{formatMoney(zakat, currency)}</p>
 
-          <div className="mt-5 rounded-xl bg-emerald-50 p-3">
-            <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/70">Nisab Status</p>
-            <p className={`mt-1 font-semibold ${reachedNisab ? 'text-emerald-800' : 'text-amber-700'}`}>
+          <div className="mt-5 rounded-xl bg-emerald-50 p-3 dark:bg-pal-bg/55">
+            <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/70 dark:text-white/75">Nisab Status</p>
+            <p className={`mt-1 font-semibold ${reachedNisab ? 'text-emerald-800 dark:text-pal-gold' : 'text-amber-700 dark:text-amber-300'}`}>
               {reachedNisab ? 'Reached' : 'Not Reached'}
             </p>
-            <p className="mt-1 text-xs text-emerald-900/70">Threshold (85g gold): {formatMoney(nisabThreshold, currency)}</p>
+            <p className="mt-1 text-xs text-emerald-900/70 dark:text-white/75">Threshold (85g gold): {formatMoney(nisabThreshold, currency)}</p>
           </div>
         </div>
       </aside>

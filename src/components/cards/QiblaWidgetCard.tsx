@@ -25,11 +25,11 @@ export default function QiblaWidgetCard({
       : '--'
 
   return (
-    <GlassCard title="Qibla Direction" icon={<Compass className="text-emerald-800" size={18} />}>
+    <GlassCard title="Qibla Direction" icon={<Compass className="text-emerald-800 dark:text-pal-gold" size={18} />}>
       <div className="flex items-center justify-between">
         <div>
-          <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/60">Qibla Bearing</p>
-          <p className="text-2xl font-bold text-emerald-950">{bearingText}</p>
+          <p className="text-xs uppercase tracking-[0.12em] text-emerald-900/60 dark:text-white/75">Qibla Bearing</p>
+          <p className="text-2xl font-bold text-emerald-950 dark:text-pal-gold">{bearingText}</p>
         </div>
         <div className="relative h-20 w-20 rounded-full border border-emerald-700/20 bg-emerald-50">
           <span className="absolute inset-x-0 top-1 text-center text-[10px] font-semibold text-emerald-800/80">N</span>
@@ -46,11 +46,11 @@ export default function QiblaWidgetCard({
         </div>
       </div>
       {hasLocation && degrees !== null && (
-        <p className="mt-3 text-xs text-emerald-900/70">Compass is aligned to True North; the needle points toward Qibla.</p>
+        <p className="mt-3 text-xs text-emerald-900/70 dark:text-white/85">Compass is aligned to True North; the needle points toward Qibla.</p>
       )}
       {!hasLocation && (
         <div className="mt-4 space-y-2">
-          <p className="text-xs text-emerald-900/70">
+          <p className="text-xs text-emerald-900/70 dark:text-white/85">
             {locationDenied
               ? 'Location access is blocked. Enable permission for precise qibla direction.'
               : 'Allow location to make qibla direction fully accurate.'}
@@ -59,7 +59,7 @@ export default function QiblaWidgetCard({
             type="button"
             onClick={onRequestLocation}
             disabled={loadingLocation}
-            className="rounded-xl bg-[#064E3B] px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-70"
+            className="pal-btn-primary px-3 py-2 text-xs uppercase tracking-[0.1em] disabled:cursor-not-allowed disabled:opacity-70"
           >
             {loadingLocation ? 'Locating...' : 'Use My Location'}
           </button>
@@ -67,7 +67,7 @@ export default function QiblaWidgetCard({
       )}
       <Link
         href="/pray-times-master"
-        className="mt-4 inline-flex rounded-xl bg-[#064E3B] px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-white transition hover:bg-[#0F766E]"
+        className="pal-btn-primary mt-4 inline-flex px-3 py-2 text-xs uppercase tracking-[0.1em]"
       >
         Open Prayer Times & Qibla
       </Link>

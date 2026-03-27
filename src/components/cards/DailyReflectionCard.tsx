@@ -49,15 +49,15 @@ export default function DailyReflectionCard() {
   return (
     <GlassCard
       title="Daily Reflection"
-      icon={<BookOpenText className="text-emerald-800" size={18} />}
+      icon={<BookOpenText className="text-emerald-800 dark:text-pal-gold" size={18} />}
       className="h-full"
     >
       <div
         className={`space-y-4 transition-opacity duration-500 ${fading ? 'opacity-0' : 'opacity-100'}`}
       >
-        <p className="font-serif text-2xl leading-relaxed text-emerald-900">{reflection.arabic}</p>
-        <p className="text-sm text-emerald-950/80">{reflection.english}</p>
-        <p className="text-xs font-medium uppercase tracking-[0.12em] text-emerald-800/70">{reflection.reference}</p>
+        <p className="font-serif text-2xl leading-relaxed text-emerald-900 dark:text-pal-gold">{reflection.arabic}</p>
+        <p className="text-sm text-emerald-950/80 dark:text-white/90">{reflection.english}</p>
+        <p className="text-xs font-medium uppercase tracking-[0.12em] text-emerald-800/70 dark:text-white/75">{reflection.reference}</p>
       </div>
     </GlassCard>
   )

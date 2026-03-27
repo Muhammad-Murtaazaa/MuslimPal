@@ -159,15 +159,15 @@ export default function DashboardView() {
 
   return (
     <div className="space-y-6">
-      <GlassCard className="overflow-hidden bg-linear-to-r from-[#064E3B] to-[#0F766E] text-white">
+      <GlassCard className="overflow-hidden bg-linear-to-r from-[#064E3B] to-[#0F766E] text-white dark:text-white">
         <div className="grid gap-5 md:grid-cols-2 md:items-center">
           <div className="space-y-3">
             <p className="inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-xs uppercase tracking-[0.15em]">
               <Sparkles size={14} /> MuslimPal Dashboard
             </p>
-            <h1 className="font-serif text-3xl md:text-4xl">Upcoming Prayer: {upcoming.name}</h1>
-            <p className="text-sm text-emerald-50/90">Stay prepared and align your day around worship with precision and calm.</p>
-            <p className="text-xs uppercase tracking-[0.12em] text-emerald-50/70">{coords.label}</p>
+            <h1 className="font-serif text-3xl text-pal-gold md:text-4xl">Upcoming Prayer: {upcoming.name}</h1>
+            <p className="text-sm text-white/90">Stay prepared and align your day around worship with precision and calm.</p>
+            <p className="text-xs uppercase tracking-[0.12em] text-white/75">{coords.label}</p>
             <span
               className={`inline-flex w-fit rounded-full px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] ${
                 hasCurrentLocation
@@ -179,7 +179,7 @@ export default function DashboardView() {
             </span>
           </div>
           <div className="rounded-2xl border border-white/20 bg-white/10 p-5 backdrop-blur-md">
-            <p className="flex items-center gap-2 text-sm uppercase tracking-[0.12em] text-emerald-50/80">
+            <p className="flex items-center gap-2 text-sm uppercase tracking-[0.12em] text-pal-gold/90">
               <Clock3 size={16} /> Live Countdown
             </p>
             <p className="mt-2 text-4xl font-bold tracking-wider md:text-5xl">{safeCountdown}</p>

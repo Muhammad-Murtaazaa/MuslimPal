@@ -327,9 +327,8 @@ const SurahDetail = () => {
                     value={reciterSearch}
                     onChange={(e) => setReciterSearch(e.target.value)}
                     placeholder="Search reciter..."
-                    className="w-full pl-8 pr-3 py-2 text-sm border border-gray-200 dark:border-gray-600
-                      rounded bg-white dark:bg-gray-800 dark:text-gray-200
-                      placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gold-500"
+                    className="w-full rounded border border-gray-200 bg-white py-2 pl-8 pr-3 text-sm text-gray-900
+                      placeholder-gray-400 focus:outline-none focus:ring-1 focus:ring-gold-500 dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white dark:placeholder:text-white/50 dark:focus:ring-pal-gold/60"
                   />
                 </div>
 
@@ -362,11 +361,11 @@ const SurahDetail = () => {
       )}
 
       <div className="text-center py-6 border-b border-gray-100 dark:border-gray-700 mb-6">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100">{surah.surahName}</h1>
-        <p className="text-4xl font-arabic mt-2 text-gray-700 dark:text-gray-300 leading-loose">{surah.surahNameArabic}</p>
-        <p className="text-gray-500 dark:text-gray-400 text-sm mt-1">{surah.surahNameTranslation}</p>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-pal-gold">{surah.surahName}</h1>
+        <p className="text-4xl font-arabic mt-2 text-gray-700 dark:text-pal-gold leading-loose">{surah.surahNameArabic}</p>
+        <p className="text-gray-500 dark:text-white/85 text-sm mt-1">{surah.surahNameTranslation}</p>
         {surah.surahNo !== 1 && surah.surahNo !== 9 && (
-          <p className="text-2xl font-arabic mt-4 text-gray-600 dark:text-gray-400 leading-loose">
+          <p className="text-2xl font-arabic mt-4 text-gray-600 dark:text-white/80 leading-loose">
             بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ
           </p>
         )}

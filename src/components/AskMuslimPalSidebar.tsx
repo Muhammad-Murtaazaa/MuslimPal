@@ -90,7 +90,7 @@ export default function AskMuslimPalSidebar({ fullPage = false }: AskMuslimPalSi
   return (
     <GlassCard
       title="Ask MuslimPal"
-      icon={<MessageCircle className="text-emerald-800" size={18} />}
+      icon={<MessageCircle className="text-emerald-800 dark:text-pal-gold" size={18} />}
       className={fullPage ? '' : 'sticky top-24'}
     >
       <div className={`${fullPage ? 'max-h-[65vh]' : 'max-h-[360px]'} space-y-3 overflow-y-auto pr-1`}>
@@ -99,7 +99,7 @@ export default function AskMuslimPalSidebar({ fullPage = false }: AskMuslimPalSi
             key={`${message.role}-${index}`}
             className={`rounded-2xl px-3 py-2 text-sm leading-6 ${
               message.role === 'assistant'
-                ? 'bg-emerald-50 text-emerald-900'
+                ? 'bg-emerald-50 text-emerald-900 dark:bg-pal-bg/50 dark:text-white/90'
                 : 'bg-[#064E3B] text-white'
             }`}
           >
@@ -112,7 +112,7 @@ export default function AskMuslimPalSidebar({ fullPage = false }: AskMuslimPalSi
         <button
           type="button"
           onClick={openFullWindow}
-          className="mt-3 inline-flex items-center gap-2 rounded-xl border border-emerald-900/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.1em] text-emerald-900 transition hover:bg-emerald-50"
+          className="pal-btn-ghost mt-3 inline-flex items-center gap-2 px-3 py-2 text-xs uppercase tracking-[0.1em] text-emerald-900 dark:text-pal-gold"
         >
           <ExternalLink size={14} /> Open AI Scholar
         </button>
@@ -128,13 +128,13 @@ export default function AskMuslimPalSidebar({ fullPage = false }: AskMuslimPalSi
               void submit(event as unknown as FormEvent<HTMLFormElement>)
             }
           }}
-          className="w-full rounded-xl border border-emerald-900/20 bg-white/80 px-3 py-2 text-sm outline-none transition focus:border-[#0F766E]"
+          className="w-full rounded-xl border border-emerald-900/20 bg-white/80 px-3 py-2 text-sm text-emerald-950 outline-none transition placeholder:text-emerald-900/45 focus:border-[#0F766E] dark:border-pal-sage/35 dark:bg-pal-bg/55 dark:text-white dark:placeholder:text-white/50 dark:focus:border-pal-gold"
           placeholder={placeholder}
         />
         <button
           type="submit"
           disabled={loading || cooldownSeconds > 0}
-          className="inline-flex items-center justify-center rounded-xl bg-[#064E3B] px-3 text-white transition hover:bg-[#0F766E] disabled:cursor-not-allowed disabled:opacity-70"
+          className="pal-btn-primary inline-flex items-center justify-center px-3 text-white disabled:cursor-not-allowed disabled:opacity-70"
         >
           {cooldownSeconds > 0 ? <span className="text-xs font-semibold">{cooldownSeconds}s</span> : <Send size={16} />}
         </button>

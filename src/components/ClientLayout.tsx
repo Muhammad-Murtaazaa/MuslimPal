@@ -31,7 +31,7 @@ export default function ClientLayout({ children }: { children: React.ReactNode }
   }
 
   return (
-    <div className="min-h-screen bg-transparent dark:bg-gray-900 flex">
+    <div className="min-h-screen bg-transparent dark:bg-pal-bg flex">
       <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
 
       <div className="flex-1 flex flex-col">
