@@ -50,6 +50,7 @@ const SurahDetail = () => {
   const [currentRepeat, setCurrentRepeat] = useState<number>(0);
   const [reciterSearch, setReciterSearch] = useState('');
   const [readingMode, setReadingMode] = useState(false);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const chapterAudioPlayerRef = useRef<AudioPlayerRef>(null);
 
@@ -119,11 +120,17 @@ const SurahDetail = () => {
   const loadSurah = async (edition: string) => {
     if (!surahNumber) return;
     try {
+      setLoadError(null);
       const surahData = await fetchSurah(Number(surahNumber), edition);
+      if (!surahData || !surahData.arabic1) {
+        throw new Error('Invalid surah data structure');
+      }
       setSurah(surahData);
       stopAllAudio();
     } catch (error) {
       console.error('Error loading Surah:', error);
+      setLoadError(`Failed to load surah: ${error instanceof Error ? error.message : 'Unknown error'}`);
+      setSurah(null);
     }
   };
 
@@ -201,7 +208,23 @@ const SurahDetail = () => {
       4: 'text-4xl',
     }[size] || 'text-2xl');
 
-  if (!surah) {
+  if (loadError) {
+    return (
+      <div className="flex items-center justify-center h-64">
+        <div className="text-center">
+          <p className="text-red-600 dark:text-red-400 text-lg mb-4">{loadError}</p>
+          <button
+            onClick={() => window.location.reload()}
+            className="pal-btn-primary px-4 py-2 text-sm"
+          >
+            Retry
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  if (!surah || !surah.arabic1 || !surah.english) {
     return (
       <div className="flex items-center justify-center h-64">
         <div className="text-gray-500 dark:text-gray-400 text-lg">Loading...</div>

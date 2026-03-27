@@ -82,6 +82,6 @@ export async function GET(
     });
   } catch (error) {
     console.error(`[/api/surah/${id}]`, error);
-    return NextResponse.json({});
+    return NextResponse.json({ error: 'Failed to load surah data' }, { status: 500 });
   }
 }
